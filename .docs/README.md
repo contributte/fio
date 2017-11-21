@@ -32,6 +32,7 @@ fio:
 ## Usage
 
 As this package is under development we haven't included downloading payments from bank yet. You can use our package for simply sending domestic payments to bank. You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package only supports domestic transactions but it is very easy to implement other types of payments. You only need to extend `Markette\Fio\Entity\Transaction\Transaction` class and use it same way as Domestic Transaction class which has these mandatory properties:
+
 * Sender account (automatically supplier from config)
 * Currency
 * Amount
@@ -41,9 +42,10 @@ As this package is under development we haven't included downloading payments fr
 
 For more properties check the class itself.
 
-From FioManager you get PaymentService which has two methods:
-* addPayment(Transaction $t) - adds and verifies transaction
-* sendPayments() - sends added transaction to bank and return PaymentResponse
+From `FioManager` you get `PaymentService` which has two methods:
+
+* `addPayment(Transaction $t)` - adds and verifies transaction
+* `sendPayments()` - sends added transaction to bank and return PaymentResponse
 
 ```php
 <?php
@@ -55,8 +57,7 @@ use Markette\Fio\Exceptions\InvalidResponseException;
 use Markette\Fio\FioManager;
 use Tracy\Debugger;
 
-/** Class SendPaymentsControl */
-class SendPaymentsControl extends BaseControl
+final class SendPaymentsControl extends BaseControl
 {
 
     private $fioManager;
@@ -64,7 +65,6 @@ class SendPaymentsControl extends BaseControl
     public function __construct(FioManager $fioManager)
     {
         parent::__construct();
-
         $this->fioManager = $fioManager;
     }
 
@@ -77,37 +77,33 @@ class SendPaymentsControl extends BaseControl
         $paymentService = $this->fioManager->createPaymentService('czk-write');
 
         foreach ($paymentsToSend as $p) {
-        	// Create transaction object and fill it with data
-        	$transaction = new DomesticTransaction();
-        	$transaction->setAccountTo($p[0]); // string
+            // Create transaction object and fill it with data
+            $transaction = new DomesticTransaction();
+            $transaction->setAccountTo($p[0]); // string
             $transaction->setBankCode($p[1]); // string
             $transaction->setVs($p[2]); // string
             $transaction->setAmount($p[3]); // float
             $transaction->setDate($p[4]); // DateTimeInterface
             $transaction->setMessageForRecipient($[5]); // string
-        	
+            
             $paymentService->addPayment($transaction);
         }
 
-        // Send payments to bank
         try {
+            // Send payments to bank
             $response = $paymentService->sendPayments();
 
         } catch (InvalidResponseException $e) {
-        	// Bank returned unknown format of the response but you can get
-        	// pure response by calling $e->getResult() and manually check what went wrong 
+            // Bank returned unknown format of the response but you can get
+            // pure response by calling $e->getResult() and manually check what went wrong 
             Debugger::log($e->getResult());
-            // Redirect us away
-            $this->onError('Something went wrong :-(');
         }
 
-        // If response is in known format
-        // Check response from bank
+        // If response is in known format, check response from bank
         if ($response->isOk()) {
             // Great do whatever you want
         } else {
-        	// Returned known errors
-            $this->onError($response->getErrorCodeMessage());
+            // $response->getErrorCodeMessage()
         }
     }
 
