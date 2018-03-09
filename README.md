@@ -4,7 +4,7 @@ Easy-to-use Fio API integration for [`Nette Framework`](https://github.com/nette
 
 -----
 
-[![Build Status](https://img.shields.io/travis/contributte/Fio.svg?style=flat-square)](https://travis-ci.org/contributte/Fio)
+[![Build Status](https://img.shields.io/travis/contributte/fio.svg?style=flat-square)](https://travis-ci.org/contributte/fio)
 [![Code coverage](https://img.shields.io/coveralls/contributte/fio.svg?style=flat-square)](https://coveralls.io/r/contributte/fio)
 [![Licence](https://img.shields.io/packagist/l/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
 
