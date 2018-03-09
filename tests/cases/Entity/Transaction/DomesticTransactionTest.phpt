@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-use Markette\Fio\Entity\Transaction\DomesticTransaction;
+use Contributte\Fio\Entity\Transaction\DomesticTransaction;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../../bootstrap.php';

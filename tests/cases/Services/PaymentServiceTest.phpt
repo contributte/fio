@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-use Markette\Fio\Entity\Account\Account;
-use Markette\Fio\Entity\Transaction\DomesticTransaction;
-use Markette\Fio\Exceptions\InvalidTransactionException;
-use Markette\Fio\Http\IHttpClient;
-use Markette\Fio\Services\PaymentService;
+use Contributte\Fio\Entity\Account\Account;
+use Contributte\Fio\Entity\Transaction\DomesticTransaction;
+use Contributte\Fio\Exceptions\InvalidTransactionException;
+use Contributte\Fio\Http\IHttpClient;
+use Contributte\Fio\Services\PaymentService;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Markette\Fio\Exceptions;
+namespace Contributte\Fio\Exceptions;
 
 /**
  * InvalidPropertyException

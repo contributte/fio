@@ -4,13 +4,13 @@ Easy-to-use Fio API integration for [`Nette Framework`](https://github.com/nette
 
 -----
 
-[![Build Status](https://img.shields.io/travis/Markette/Fio.svg?style=flat-square)](https://travis-ci.org/Markette/Fio)
-[![Code coverage](https://img.shields.io/coveralls/markette/fio.svg?style=flat-square)](https://coveralls.io/r/markette/fio)
-[![Licence](https://img.shields.io/packagist/l/markette/fio.svg?style=flat-square)](https://packagist.org/packages/markette/fio)
+[![Build Status](https://img.shields.io/travis/contributte/Fio.svg?style=flat-square)](https://travis-ci.org/contributte/Fio)
+[![Code coverage](https://img.shields.io/coveralls/contributte/fio.svg?style=flat-square)](https://coveralls.io/r/contributte/fio)
+[![Licence](https://img.shields.io/packagist/l/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
 
-[![Downloads this Month](https://img.shields.io/packagist/dm/markette/fio.svg?style=flat-square)](https://packagist.org/packages/markette/fio)
-[![Downloads total](https://img.shields.io/packagist/dt/markette/fio.svg?style=flat-square)](https://packagist.org/packages/markette/fio)
-[![Latest stable](https://img.shields.io/packagist/v/markette/fio.svg?style=flat-square)](https://packagist.org/packages/markette/fio)
+[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
+[![Downloads total](https://img.shields.io/packagist/dt/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
+[![Latest stable](https://img.shields.io/packagist/v/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
 
 ## Discussion / Help
 
@@ -19,20 +19,21 @@ Easy-to-use Fio API integration for [`Nette Framework`](https://github.com/nette
 ## Install
 
 ```
-composer require markette/fio
+composer require contributte/fio
 ```
 
 ## Versions
 
 | State       | Version | Branch   | PHP      |
 |-------------|---------|----------|----------|
-| development | `^0.1`  | `master` | `>= 7.1` |
+| development | `^0.2`  | `master` | `>= 7.1` |
+| stable      | `^0.1`  | `master` | `>= 7.1` |
 
 ## Overview
 
-- [Requirements - what do do you need](https://github.com/markette/fio/blob/master/.docs/README.md#requirements)
-- [Installation - how to register an extension](https://github.com/markette/fio/blob/master/.docs/README.md#Installation)
-- [Usage - how to use it](https://github.com/markette/fio/blob/master/.docs/README.md#usage)
+- [Requirements - what do do you need](https://github.com/contributte/fio/blob/master/.docs/README.md#requirements)
+- [Installation - how to register an extension](https://github.com/contributte/fio/blob/master/.docs/README.md#Installation)
+- [Usage - how to use it](https://github.com/contributte/fio/blob/master/.docs/README.md#usage)
 
 ## Maintainers
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Markette\Fio\Http;
+namespace Contributte\Fio\Http;
 
 /**
  * Interface IHttpClient
@@ -10,10 +10,10 @@ namespace Markette\Fio\Http;
 interface IHttpClient
 {
 
-    /**
-     * @param Request $request
-     * @return string
-     */
-    public function sendRequest(Request $request): string;
+	/**
+	 * @param Request $request
+	 * @return string
+	 */
+	public function sendRequest(Request $request): string;
 
 }

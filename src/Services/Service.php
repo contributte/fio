@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Markette\Fio\Services;
+namespace Contributte\Fio\Services;
 
-use Markette\Fio\Entity\Account\Account;
-use Markette\Fio\Http\IHttpClient;
-use Markette\Fio\Http\Request;
+use Contributte\Fio\Entity\Account\Account;
+use Contributte\Fio\Http\IHttpClient;
+use Contributte\Fio\Http\Request;
 
 /**
  * Service
@@ -14,26 +14,26 @@ use Markette\Fio\Http\Request;
 abstract class Service
 {
 
-    /** @var IHttpClient */
-    protected $httpClient;
+	/** @var IHttpClient */
+	protected $httpClient;
 
-    /** @var Account */
-    protected $account;
+	/** @var Account */
+	protected $account;
 
-    /**
-     * @param Account $account
-     * @param IHttpClient $httpClient
-     */
-    public function __construct(Account $account, IHttpClient $httpClient)
-    {
-        $this->httpClient = $httpClient;
-        $this->account = $account;
-    }
+	/**
+	 * @param Account $account
+	 * @param IHttpClient $httpClient
+	 */
+	public function __construct(Account $account, IHttpClient $httpClient)
+	{
+		$this->httpClient = $httpClient;
+		$this->account = $account;
+	}
 
-    /**
-     * @param Request $request
-     * @return string
-     */
-    abstract protected function createRequest(Request $request): string;
+	/**
+	 * @param Request $request
+	 * @return string
+	 */
+	abstract protected function createRequest(Request $request): string;
 
 }

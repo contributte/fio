@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Markette\Fio\Utils;
+namespace Contributte\Fio\Utils;
 
 use SimpleXMLElement;
 
@@ -12,34 +12,34 @@ use SimpleXMLElement;
 class ExportXmlGenerator
 {
 
-    /**
-     * @param mixed[] $data
-     * @return string
-     */
-    public static function fromArray(array $data): string
-    {
-        // Import tag
-        $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><Import></Import>');
+	/**
+	 * @param mixed[] $data
+	 * @return string
+	 */
+	public static function fromArray(array $data): string
+	{
+		// Import tag
+		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><Import></Import>');
 
-        // Orders tag
-        $orders = $xml->addChild('Orders');
+		// Orders tag
+		$orders = $xml->addChild('Orders');
 
-        // Unload transaction data to XML
-        foreach ($data as $t) {
+		// Unload transaction data to XML
+		foreach ($data as $t) {
 
-            foreach ($t as $tName => $tProperties) {
-                $transaction = $orders->addChild($tName);
+			foreach ($t as $tName => $tProperties) {
+				$transaction = $orders->addChild($tName);
 
-                foreach ($tProperties as $propertyName => $propertyValue) {
-                    // Only properties with value
-                    if ($propertyValue !== NULL) {
-                        $transaction->addChild($propertyName, htmlspecialchars((string) $propertyValue));
-                    }
-                }
-            }
-        }
+				foreach ($tProperties as $propertyName => $propertyValue) {
+					// Only properties with value
+					if ($propertyValue !== NULL) {
+						$transaction->addChild($propertyName, htmlspecialchars((string) $propertyValue));
+					}
+				}
+			}
+		}
 
-        return $xml->asXML();
-    }
+		return $xml->asXML();
+	}
 
 }

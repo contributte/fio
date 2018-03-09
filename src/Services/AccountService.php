@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Markette\Fio\Services;
+namespace Contributte\Fio\Services;
 
-use Markette\Fio\Http\Request;
+use Contributte\Fio\Http\Request;
 
 /**
  * AccountService
@@ -12,33 +12,33 @@ use Markette\Fio\Http\Request;
 class AccountService extends Service
 {
 
-    /**
-     * @param string $from
-     * @param string $to
-     * @return void
-     */
-    public function movementsForPeriod(string $from, string $to): void
-    {
-        // Tady se vytvori request a $this->sendRequest()
-    }
+	/**
+	 * @param string $from
+	 * @param string $to
+	 * @return void
+	 */
+	public function movementsForPeriod(string $from, string $to): void
+	{
+		// Tady se vytvori request a $this->sendRequest()
+	}
 
-    /**
-     * @return void
-     */
-    public function movementsFromLastRequest(): void
-    {
-        // Tady se vytvori request a $this->sendRequest()
-        // a dalsi tyto metody
-    }
+	/**
+	 * @return void
+	 */
+	public function movementsFromLastRequest(): void
+	{
+		// Tady se vytvori request a $this->sendRequest()
+		// a dalsi tyto metody
+	}
 
-    /**
-     * @param Request $request
-     * @return string
-     */
-    protected function createRequest(Request $request): string
-    {
-        // TODO: Implement sendRequest() method.
-        return '';
-    }
+	/**
+	 * @param Request $request
+	 * @return string
+	 */
+	protected function createRequest(Request $request): string
+	{
+		// TODO: Implement sendRequest() method.
+		return '';
+	}
 
 }

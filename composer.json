@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Markette\\Fio\\": "src"
+      "Contributte\\Fio\\": "src"
     }
   },
   "scripts": {
@@ -48,9 +48,11 @@
       "temp/phpstan/vendor/bin/phpstan analyse -l 1 -c phpstan.neon src"
     ]
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "extra": {
     "branch-alias": {
-      "dev-master": "0.1.x-dev"
+      "dev-master": "0.2.x-dev"
     }
   }
 }

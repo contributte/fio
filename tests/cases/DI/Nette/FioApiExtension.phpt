@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
-use Markette\Fio\DI\Nette\FioApiExtension;
-use Markette\Fio\FioManager;
+use Contributte\Fio\DI\Nette\FioApiExtension;
+use Contributte\Fio\FioManager;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
 use Nette\DI\ContainerLoader;
@@ -31,7 +31,7 @@ test(function (): void {
 	}, 1);
 
 	/** @var Container $container */
-	$container = new $class;
+	$container = new $class();
 
 	// Service created
 	Assert::type(FioManager::class, $container->getService('fio.manager'));
