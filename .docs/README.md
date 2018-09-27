@@ -17,7 +17,7 @@ You need your bank account and token generated in your e-banking. There is no sp
 
 ```yaml
 extensions:
-    fio: Markette\Fio\DI\Nette\FioApiExtension
+    fio: Contributte\Fio\DI\Nette\FioApiExtension
     
 fio:
     accounts:
@@ -31,7 +31,7 @@ fio:
 
 ## Usage
 
-As this package is under development we haven't included downloading payments from bank yet. You can use our package for simply sending domestic payments to bank. You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package only supports domestic transactions but it is very easy to implement other types of payments. You only need to extend `Markette\Fio\Entity\Transaction\Transaction` class and use it same way as Domestic Transaction class which has these mandatory properties:
+As this package is under development we haven't included downloading payments from bank yet. You can use our package for simply sending domestic payments to bank. You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package only supports domestic transactions but it is very easy to implement other types of payments. You only need to extend `Contributte\Fio\Entity\Transaction\Transaction` class and use it same way as Domestic Transaction class which has these mandatory properties:
 
 * Sender account (automatically supplier from config)
 * Currency
@@ -52,9 +52,9 @@ From `FioManager` you get `PaymentService` which has two methods:
 
 namespace App;
 
-use Markette\Fio\Entity\Transaction\DomesticTransaction;
-use Markette\Fio\Exceptions\InvalidResponseException;
-use Markette\Fio\FioManager;
+use Contributte\Fio\Entity\Transaction\DomesticTransaction;
+use Contributte\Fio\Exceptions\InvalidResponseException;
+use Contributte\Fio\FioManager;
 use Tracy\Debugger;
 
 final class SendPaymentsControl extends BaseControl
