@@ -5,10 +5,6 @@
 /vendor
 /composer.lock
 
-$ PhpStan
-/temp
-
 # Tests
-/tests/*.log
-/tests/tmp
-/tests/coverage.html
+/temp
+/coverage.xml

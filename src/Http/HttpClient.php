@@ -7,16 +7,10 @@ use CURLFile;
 
 /**
  * HttpClient using curl
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class HttpClient implements IHttpClient
 {
 
-	/**
-	 * @param Request $request
-	 * @return string
-	 */
 	public function sendRequest(Request $request): string
 	{
 		// Init
@@ -41,12 +35,12 @@ class HttpClient implements IHttpClient
 
 				// Create tempfile
 				$xmlFile = tmpfile();
-				if (!$xmlFile) {
+				if (!is_resource($xmlFile)) {
 					throw new IOException('Could not create temporary file.');
 				}
 
 				// Write data to file
-				if (!fwrite($xmlFile, $request->getFileContents())) {
+				if (fwrite($xmlFile, $request->getFileContents()) === false) {
 					throw new IOException('Could not write to temporary file.');
 				}
 
@@ -62,13 +56,13 @@ class HttpClient implements IHttpClient
 		}
 
 		// Receive response
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		// Execute
 		$result = curl_exec($ch);
 
 		// If curl fail to exec we throw exception with error
-		if ($result === FALSE) {
+		if ($result === false) {
 			throw new IOException(curl_strerror(curl_errno($ch)));
 		}
 

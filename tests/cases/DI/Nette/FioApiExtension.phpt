@@ -11,7 +11,7 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 // Test if FioManager and Config is created
 test(function (): void {
-	$loader = new ContainerLoader(TEMP_DIR, TRUE);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
 		$compiler->addExtension('fio', new FioApiExtension())
 			->addConfig([

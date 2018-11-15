@@ -10,8 +10,6 @@ use Traversable;
 
 /**
  * ExportResponse
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class PaymentResponse
 {
@@ -35,7 +33,6 @@ class PaymentResponse
 	private $pureResult;
 
 	/**
-	 * @param string $result
 	 * @throws InvalidResponseException when unexpected XML structure
 	 */
 	public function __construct(string $result)
@@ -44,7 +41,7 @@ class PaymentResponse
 		$this->pureResult = $result;
 
 		// Catch errors differently
-		$prev = libxml_use_internal_errors(TRUE);
+		$prev = libxml_use_internal_errors(true);
 
 		try {
 			$this->xml = new SimpleXMLElement($result);
@@ -61,43 +58,35 @@ class PaymentResponse
 		libxml_use_internal_errors($prev);
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isOk(): bool
 	{
 		return $this->getStatus() === self::SUCCESS;
 	}
 
 	/**
-	 * @return string
 	 * @throws InvalidResponseException when unexpected XML structure
 	 */
 	public function getStatus(): string
 	{
 		if (!isset($this->getResult()->status)) {
-			throw new InvalidResponseException('Unexpected XML structure.', 0, NULL, $this->pureResult);
+			throw new InvalidResponseException('Unexpected XML structure.', 0, null, $this->pureResult);
 		}
 
 		return (string) $this->getResult()->status;
 	}
 
 	/**
-	 * @return int
 	 * @throws InvalidResponseException when unexpected XML structure
 	 */
 	public function getErrorCode(): int
 	{
 		if (!isset($this->getResult()->errorCode)) {
-			throw new InvalidResponseException('Unexpected XML structure.', 0, NULL, $this->pureResult);
+			throw new InvalidResponseException('Unexpected XML structure.', 0, null, $this->pureResult);
 		}
 
 		return (int) $this->getResult()->errorCode;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getErrorCodeMessage(): string
 	{
 		return self::ERR_MSG[$this->getErrorCode()];
@@ -110,7 +99,7 @@ class PaymentResponse
 	private function getResult(): Traversable
 	{
 		if (!isset($this->xml->result)) {
-			throw new InvalidResponseException('Unexpected XML structure.', 0, NULL, $this->pureResult);
+			throw new InvalidResponseException('Unexpected XML structure.', 0, null, $this->pureResult);
 		}
 
 		return $this->xml->result;

@@ -7,8 +7,6 @@ use DateTimeInterface;
 
 /**
  * Transaction
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 abstract class Transaction
 {
@@ -34,10 +32,6 @@ abstract class Transaction
 	/** @var string */
 	protected $date;
 
-	/**
-	 * @param string $accountFrom
-	 * @return void
-	 */
 	public function setAccountFrom(string $accountFrom): void
 	{
 		if (strlen($accountFrom) > 16) {
@@ -47,10 +41,6 @@ abstract class Transaction
 		$this->accountFrom = $accountFrom;
 	}
 
-	/**
-	 * @param string $currency
-	 * @return void
-	 */
 	public function setCurrency(string $currency): void
 	{
 		if (strlen($currency) !== 3) {
@@ -60,10 +50,6 @@ abstract class Transaction
 		$this->currency = $currency;
 	}
 
-	/**
-	 * @param float $amount
-	 * @return void
-	 */
 	public function setAmount(float $amount): void
 	{
 		if (strlen((string) $amount) > 18) {
@@ -73,23 +59,15 @@ abstract class Transaction
 		$this->amount = $amount;
 	}
 
-	/**
-	 * @param string $accountTo
-	 * @return void
-	 */
 	public function setAccountTo(string $accountTo): void
 	{
-		if (!preg_match('/^(\d{1,6}-)?\d{0,10}$/', $accountTo)) {
+		if (preg_match('/^(\d{1,6}-)?\d{0,10}$/', $accountTo) !== 1) {
 			throw new InvalidPropertyException('$accountTo format must be string: prefix{max 6digits}-number{max 10 digits}');
 		}
 
 		$this->accountTo = $accountTo;
 	}
 
-	/**
-	 * @param DateTimeInterface $date
-	 * @return void
-	 */
 	public function setDate(DateTimeInterface $date): void
 	{
 		$this->date = $date->format('Y-m-d');
@@ -110,8 +88,6 @@ abstract class Transaction
 
 	/**
 	 * Checks if all mandatory data are set
-	 *
-	 * @return bool
 	 */
 	abstract public function isValid(): bool;
 

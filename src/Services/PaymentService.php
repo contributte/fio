@@ -14,32 +14,23 @@ use Contributte\Fio\Http\Request;
 
 /**
  * ExportClient
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class PaymentService extends Service
 {
 
 	private const URL = 'https://www.fio.cz/ib_api/rest/import/';
 
-	/** @var TransactionList */
+	/** @var TransactionList|null */
 	private $transactionList;
 
-	/**
-	 * @param Account $account
-	 * @param IHttpClient $httpClient
-	 */
 	public function __construct(Account $account, IHttpClient $httpClient)
 	{
 		parent::__construct($account, $httpClient);
 	}
 
-	/**
-	 * @return TransactionList
-	 */
 	public function getTransactionList(): TransactionList
 	{
-		if (!$this->transactionList) {
+		if ($this->transactionList === null) {
 			$this->transactionList = new TransactionList();
 		}
 
@@ -47,8 +38,6 @@ class PaymentService extends Service
 	}
 
 	/**
-	 * @param Transaction $transaction
-	 * @return void
 	 * @throws InvalidTransactionException
 	 */
 	public function addPayment(Transaction $transaction): void
@@ -65,7 +54,6 @@ class PaymentService extends Service
 	}
 
 	/**
-	 * @return PaymentResponse
 	 * @throws InvalidResponseException|IOException
 	 */
 	public function sendPayments(): PaymentResponse
@@ -86,10 +74,6 @@ class PaymentService extends Service
 		return $response;
 	}
 
-	/**
-	 * @param Request $request
-	 * @return string
-	 */
 	protected function createRequest(Request $request): string
 	{
 		// Ask HttpClient to execute request
