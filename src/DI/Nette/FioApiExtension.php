@@ -13,21 +13,17 @@ use Nette\Utils\Validators;
 
 /**
  * FioApiExtension
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class FioApiExtension extends CompilerExtension
 {
 
-	/** @var string[] */
+	/** @var mixed[] */
 	private $defaults = [
 		'accounts' => [],
 	];
 
 	/**
 	 * Register services
-	 *
-	 * @return void
 	 */
 	public function loadConfiguration(): void
 	{

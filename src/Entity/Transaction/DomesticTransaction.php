@@ -6,8 +6,6 @@ use Contributte\Fio\Exceptions\InvalidPropertyException;
 
 /**
  * DomesticTransaction
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 final class DomesticTransaction extends Transaction
 {
@@ -47,10 +45,6 @@ final class DomesticTransaction extends Transaction
 	/** @var int */
 	private $paymentReason;
 
-	/**
-	 * @param int $paymentType
-	 * @return void
-	 */
 	public function setPaymentType(int $paymentType): void
 	{
 		if (strlen((string) $paymentType) !== 6) {
@@ -60,23 +54,15 @@ final class DomesticTransaction extends Transaction
 		$this->paymentType = $paymentType;
 	}
 
-	/**
-	 * @param string $bankCode
-	 * @return void
-	 */
 	public function setBankCode(string $bankCode): void
 	{
-		if (strlen((string) $bankCode) !== 4) {
+		if (strlen($bankCode) !== 4) {
 			throw new InvalidPropertyException('$bankCode must be 4 digits long.');
 		}
 
 		$this->bankCode = $bankCode;
 	}
 
-	/**
-	 * @param string $ks
-	 * @return void
-	 */
 	public function setKs(string $ks): void
 	{
 		if (strlen($ks) > 4) {
@@ -85,10 +71,6 @@ final class DomesticTransaction extends Transaction
 		$this->ks = $ks;
 	}
 
-	/**
-	 * @param string $vs
-	 * @return void
-	 */
 	public function setVs(string $vs): void
 	{
 		if (strlen($vs) > 10) {
@@ -98,10 +80,6 @@ final class DomesticTransaction extends Transaction
 		$this->vs = $vs;
 	}
 
-	/**
-	 * @param string $ss
-	 * @return void
-	 */
 	public function setSs(string $ss): void
 	{
 		if (strlen($ss) > 10) {
@@ -111,10 +89,6 @@ final class DomesticTransaction extends Transaction
 		$this->ss = $ss;
 	}
 
-	/**
-	 * @param string $messageForRecipient
-	 * @return void
-	 */
 	public function setMessageForRecipient(string $messageForRecipient): void
 	{
 		if (strlen($messageForRecipient) > 140) {
@@ -124,10 +98,6 @@ final class DomesticTransaction extends Transaction
 		$this->messageForRecipient = $messageForRecipient;
 	}
 
-	/**
-	 * @param string $comment
-	 * @return void
-	 */
 	public function setComment(string $comment): void
 	{
 		if (strlen($comment) > 255) {
@@ -137,10 +107,6 @@ final class DomesticTransaction extends Transaction
 		$this->comment = $comment;
 	}
 
-	/**
-	 * @param int $paymentReason
-	 * @return void
-	 */
 	public function setPaymentReason(int $paymentReason): void
 	{
 		if (strlen((string) $paymentReason) !== 3) {
@@ -168,9 +134,6 @@ final class DomesticTransaction extends Transaction
 		]);
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isValid(): bool
 	{
 		if (isset(
@@ -181,10 +144,10 @@ final class DomesticTransaction extends Transaction
 			$this->bankCode,
 			$this->date
 		)) {
-			return TRUE;
+			return true;
 		}
 
-		return FALSE;
+		return false;
 	}
 
 }

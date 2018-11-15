@@ -7,8 +7,6 @@ use Contributte\Fio\Services\PaymentService;
 
 /**
  * FioManager
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class FioManager
 {
@@ -19,20 +17,12 @@ class FioManager
 	/** @var IHttpClient */
 	private $httpClient;
 
-	/**
-	 * @param Config $config
-	 * @param IHttpClient $httpClient
-	 */
 	public function __construct(Config $config, IHttpClient $httpClient)
 	{
 		$this->config = $config;
 		$this->httpClient = $httpClient;
 	}
 
-	/**
-	 * @param string $accountName
-	 * @return PaymentService
-	 */
 	public function createPaymentService(string $accountName): PaymentService
 	{
 		// We get account by name

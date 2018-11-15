@@ -8,8 +8,6 @@ use IteratorAggregate;
 
 /**
  * TransactionList
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class TransactionList implements IteratorAggregate
 {
@@ -17,10 +15,6 @@ class TransactionList implements IteratorAggregate
 	/** @var Transaction[] */
 	protected $transactions = [];
 
-	/**
-	 * @param Transaction $transaction
-	 * @return void
-	 */
 	public function addTransaction(Transaction $transaction): void
 	{
 		$this->transactions[] = $transaction;
@@ -34,9 +28,6 @@ class TransactionList implements IteratorAggregate
 		return new ArrayIterator($this->transactions);
 	}
 
-	/**
-	 * @return string
-	 */
 	public function toXml(): string
 	{
 		return ExportXmlGenerator::fromArray($this->toArray());

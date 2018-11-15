@@ -6,8 +6,6 @@ use Contributte\Fio\Exceptions\InvalidPropertyException;
 
 /**
  * Account
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class Account
 {
@@ -18,13 +16,9 @@ class Account
 	/** @var string */
 	private $accountNum;
 
-	/**
-	 * @param string $token
-	 * @param string $accountNum
-	 */
 	public function __construct(string $token, string $accountNum)
 	{
-		if (strpos($accountNum, '/') || strlen($accountNum) > 16) {
+		if (strpos($accountNum, '/') !== false || strlen($accountNum) > 16) {
 			throw new InvalidPropertyException('Maximum account length is 16 and must only include digits. Please do not include bank code.');
 		}
 
@@ -36,17 +30,11 @@ class Account
 		$this->token = $token;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getToken(): string
 	{
 		return $this->token;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getAccountNum(): string
 	{
 		return $this->accountNum;

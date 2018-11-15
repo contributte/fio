@@ -7,8 +7,6 @@ use Contributte\Fio\Exceptions\InvalidAccountException;
 
 /**
  * Config
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class Config
 {
@@ -16,19 +14,12 @@ class Config
 	/** @var Account[] */
 	private $accounts;
 
-	/**
-	 * @param string $name
-	 * @param Account $account
-	 * @return void
-	 */
 	public function addAccount(string $name, Account $account): void
 	{
 		$this->accounts[$name] = $account;
 	}
 
 	/**
-	 * @param string $name
-	 * @return Account
 	 * @throws InvalidAccountException when there is no account saved under called name
 	 */
 	public function getAccountByName(string $name): Account
@@ -50,7 +41,6 @@ class Config
 
 	/**
 	 * @param Account[] $accounts
-	 * @return void
 	 */
 	public function setAccounts(array $accounts): void
 	{

@@ -6,8 +6,6 @@ use RuntimeException as GeneralRunTimeException;
 
 /**
  * RuntimeException
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class RuntimeException extends GeneralRunTimeException
 {

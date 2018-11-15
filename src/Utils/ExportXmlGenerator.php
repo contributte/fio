@@ -6,15 +6,12 @@ use SimpleXMLElement;
 
 /**
  * XmlGenerator
- *
- * @author Filip Suska <vody105@gmail.com>
  */
 class ExportXmlGenerator
 {
 
 	/**
 	 * @param mixed[] $data
-	 * @return string
 	 */
 	public static function fromArray(array $data): string
 	{
@@ -32,7 +29,7 @@ class ExportXmlGenerator
 
 				foreach ($tProperties as $propertyName => $propertyValue) {
 					// Only properties with value
-					if ($propertyValue !== NULL) {
+					if ($propertyValue !== null) {
 						$transaction->addChild($propertyName, htmlspecialchars((string) $propertyValue));
 					}
 				}

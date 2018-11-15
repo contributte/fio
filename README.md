@@ -7,10 +7,10 @@ Easy-to-use Fio API integration for [`Nette Framework`](https://github.com/nette
 [![Build Status](https://img.shields.io/travis/contributte/fio.svg?style=flat-square)](https://travis-ci.org/contributte/fio)
 [![Code coverage](https://img.shields.io/coveralls/contributte/fio.svg?style=flat-square)](https://coveralls.io/r/contributte/fio)
 [![Licence](https://img.shields.io/packagist/l/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
-
 [![Downloads this Month](https://img.shields.io/packagist/dm/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
 [![Downloads total](https://img.shields.io/packagist/dt/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
 [![Latest stable](https://img.shields.io/packagist/v/contributte/fio.svg?style=flat-square)](https://packagist.org/packages/contributte/fio)
+[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/phpstan/phpstan)
 
 ## Discussion / Help
 
@@ -56,7 +56,7 @@ composer require contributte/fio
         <a href="https://github.com/Vody105">Filip Šuška</a>
       </td>
     </tr>
-  <tbody>
+  </tbody>
 </table>
 
 -----
