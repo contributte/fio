@@ -23,7 +23,6 @@ class ExportXmlGenerator
 
 		// Unload transaction data to XML
 		foreach ($data as $t) {
-
 			foreach ($t as $tName => $tProperties) {
 				$transaction = $orders->addChild($tName);
 

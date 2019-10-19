@@ -1,13 +1,11 @@
 includes:
-	- temp/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
-	- temp/phpstan/vendor/phpstan/phpstan-nette/extension.neon
-	- temp/phpstan/vendor/phpstan/phpstan-nette/rules.neon
-	- temp/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
+	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- vendor/phpstan/phpstan-nette/extension.neon
+	- vendor/phpstan/phpstan-nette/rules.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
 	ignoreErrors:
-		# Maybe bug, tmpfile could return false
-		- '#^Call to function is_resource\(\) with resource will always evaluate to true\.$#'
 		# curl_exec returns result thanks to option CURLOPT_RETURNTRANSFER - wtf is that api?
 		- '#^Method Contributte\\Fio\\Http\\HttpClient\:\:sendRequest\(\) should return string but returns string\|true\.$#'
 		# should return correctly
