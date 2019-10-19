@@ -68,6 +68,7 @@ final class DomesticTransaction extends Transaction
 		if (strlen($ks) > 4) {
 			throw new InvalidPropertyException('$ks can be maximum of 4 digits long.');
 		}
+
 		$this->ks = $ks;
 	}
 
@@ -136,18 +137,14 @@ final class DomesticTransaction extends Transaction
 
 	public function isValid(): bool
 	{
-		if (isset(
+		return isset(
 			$this->accountFrom,
 			$this->currency,
 			$this->amount,
 			$this->accountTo,
 			$this->bankCode,
 			$this->date
-		)) {
-			return true;
-		}
-
-		return false;
+		);
 	}
 
 }
