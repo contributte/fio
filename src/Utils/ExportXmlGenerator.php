@@ -35,7 +35,7 @@ class ExportXmlGenerator
 			}
 		}
 
-		return $xml->asXML();
+		return (string) $xml->asXML();
 	}
 
 }
