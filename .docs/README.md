@@ -1,4 +1,4 @@
-# Fio Api Integration
+# Contributte Fio Api Integration
 
 ## Content
 
@@ -18,7 +18,7 @@ You need your bank account and token generated in your e-banking. There is no sp
 ```yaml
 extensions:
     fio: Contributte\Fio\DI\Nette\FioApiExtension
-    
+
 fio:
     accounts:
         czk-write:
@@ -85,7 +85,7 @@ final class SendPaymentsControl extends BaseControl
             $transaction->setAmount($p[3]); // float
             $transaction->setDate($p[4]); // DateTimeInterface
             $transaction->setMessageForRecipient($[5]); // string
-            
+
             $paymentService->addPayment($transaction);
         }
 
@@ -95,7 +95,7 @@ final class SendPaymentsControl extends BaseControl
 
         } catch (InvalidResponseException $e) {
             // Bank returned unknown format of the response but you can get
-            // pure response by calling $e->getResult() and manually check what went wrong 
+            // pure response by calling $e->getResult() and manually check what went wrong
             Debugger::log($e->getResult());
         }
 
