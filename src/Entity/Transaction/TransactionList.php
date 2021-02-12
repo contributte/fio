@@ -7,7 +7,7 @@ use Contributte\Fio\Utils\ExportXmlGenerator;
 use IteratorAggregate;
 
 /**
- * TransactionList
+ * @implements IteratorAggregate<Transaction>
  */
 class TransactionList implements IteratorAggregate
 {
@@ -21,7 +21,7 @@ class TransactionList implements IteratorAggregate
 	}
 
 	/**
-	 * @return ArrayIterator|Transaction[]
+	 * @return ArrayIterator<int, Transaction>
 	 */
 	public function getIterator(): ArrayIterator
 	{

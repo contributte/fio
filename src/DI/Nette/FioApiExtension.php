@@ -6,10 +6,11 @@ use Contributte\Fio\Config;
 use Contributte\Fio\Entity\Account\Account;
 use Contributte\Fio\FioManager;
 use Contributte\Fio\Http\HttpClient;
+use Nette;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
-use Nette\DI\Statement;
-use Nette\Utils\Validators;
+use Nette\DI\Definitions\Statement;
+use Nette\Schema\Expect;
 
 /**
  * FioApiExtension
@@ -17,36 +18,35 @@ use Nette\Utils\Validators;
 class FioApiExtension extends CompilerExtension
 {
 
-	/** @var mixed[] */
-	private $defaults = [
-		'accounts' => [],
-	];
+	public function getConfigSchema(): Nette\Schema\Schema
+	{
+		return Expect::structure([
+			'accounts' => Expect::arrayOf(
+				Expect::structure([
+					'account' => Expect::string()->required(),
+					'token' => Expect::string()->required(),
+				])
+			),
+		]);
+	}
 
 	/**
 	 * Register services
 	 */
 	public function loadConfiguration(): void
 	{
-		$neon = $this->validateConfig($this->defaults);
-
 		/** @var ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
-
-		// Input validation
-		Validators::assertField($neon, 'accounts', 'array');
 
 		// Add accounts to config in DI
 		$configDef = $builder->addDefinition($this->prefix('config'))
 			->setType(Config::class);
 
-		foreach ($neon['accounts'] as $name => $acc) {
-			// Input validation
-			Validators::assertField($acc, 'token', 'string:64');
-			Validators::assertField($acc, 'account', 'string:..16');
-
+		$config = (array) $this->config;
+		foreach ($config['accounts'] as $name => $acc) {
 			$configDef->addSetup('addAccount', [
 				$name,
-				new Statement(Account::class, [$acc['token'], $acc['account']]),
+				new Statement(Account::class, [$acc->token, $acc->account]),
 			]);
 		}
 

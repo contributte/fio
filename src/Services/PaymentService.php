@@ -69,9 +69,7 @@ class PaymentService extends Service
 		$result = $this->createRequest($request);
 
 		// Manage response
-		$response = new PaymentResponse($result);
-
-		return $response;
+		return new PaymentResponse($result);
 	}
 
 	protected function createRequest(Request $request): string

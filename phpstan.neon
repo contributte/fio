@@ -8,8 +8,6 @@ parameters:
 	ignoreErrors:
 		# curl_exec returns result thanks to option CURLOPT_RETURNTRANSFER - wtf is that api?
 		- '#^Method Contributte\\Fio\\Http\\HttpClient\:\:sendRequest\(\) should return string but returns string\|true\.$#'
-		# should return correctly
-		- '#^Method Contributte\\Fio\\Utils\\ExportXmlGenerator\:\:fromArray\(\) should return string but returns bool\|string\.$#'
 
 		# Probably bug, LibXMLError does not use Throwable
 		- '#^Parameter \#3 \$previous of class Contributte\\Fio\\Exceptions\\InvalidResponseException constructor expects Throwable\|null, LibXMLError given\.$#'
