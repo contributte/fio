@@ -22,8 +22,8 @@ Website ðŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ðŸ‘
 
 To install latest version of `contributte/fio` use [Composer](https://getcomposer.org).
 
-```
-$ composer require contributte/fio
+```bash
+composer require contributte/fio
 ```
 
 ## Documentation
