@@ -15,18 +15,18 @@ You need your bank account and token generated in your e-banking. There is no sp
 
 ## Installation
 
-```yaml
+```neon
 extensions:
-    fio: Contributte\Fio\DI\Nette\FioApiExtension
+	fio: Contributte\Fio\DI\Nette\FioApiExtension
 
 fio:
-    accounts:
-        czk-write:
-            account: %fioapi.account1%
-            token: %fioapi.token1%
-        czk-read:
-            account: %fioapi.account2%
-            token: %fioapi.token2%
+	accounts:
+		czk-write:
+			account: %fioapi.account1%
+			token: %fioapi.token1%
+		czk-read:
+			account: %fioapi.account2%
+			token: %fioapi.token2%
 ```
 
 ## Usage
@@ -60,53 +60,52 @@ use Tracy\Debugger;
 final class SendPaymentsControl extends BaseControl
 {
 
-    private $fioManager;
+	private $fioManager;
 
-    public function __construct(FioManager $fioManager)
-    {
-        parent::__construct();
-        $this->fioManager = $fioManager;
-    }
+	public function __construct(FioManager $fioManager)
+	{
+		parent::__construct();
+		$this->fioManager = $fioManager;
+	}
 
-    public function handleSend(): void
-    {
-        // You somehow get your payments
-        $paymentsToSend = $this->findPayments();
+	public function handleSend(): void
+	{
+		// You somehow get your payments
+		$paymentsToSend = $this->findPayments();
 
-        // Get our payment service with proper account name
-        $paymentService = $this->fioManager->createPaymentService('czk-write');
+		// Get our payment service with proper account name
+		$paymentService = $this->fioManager->createPaymentService('czk-write');
 
-        foreach ($paymentsToSend as $p) {
-            // Create transaction object and fill it with data
-            $transaction = new DomesticTransaction();
-            $transaction->setAccountTo($p[0]); // string
-            $transaction->setBankCode($p[1]); // string
-            $transaction->setVs($p[2]); // string
-            $transaction->setAmount($p[3]); // float
-            $transaction->setDate($p[4]); // DateTimeInterface
-            $transaction->setMessageForRecipient($[5]); // string
+		foreach ($paymentsToSend as $p) {
+			// Create transaction object and fill it with data
+			$transaction = new DomesticTransaction();
+			$transaction->setAccountTo($p[0]); // string
+			$transaction->setBankCode($p[1]); // string
+			$transaction->setVs($p[2]); // string
+			$transaction->setAmount($p[3]); // float
+			$transaction->setDate($p[4]); // DateTimeInterface
+			$transaction->setMessageForRecipient($[5]); // string
 
-            $paymentService->addPayment($transaction);
-        }
+			$paymentService->addPayment($transaction);
+		}
 
-        try {
-            // Send payments to bank
-            $response = $paymentService->sendPayments();
+		try {
+			// Send payments to bank
+			$response = $paymentService->sendPayments();
 
-        } catch (InvalidResponseException $e) {
-            // Bank returned unknown format of the response but you can get
-            // pure response by calling $e->getResult() and manually check what went wrong
-            Debugger::log($e->getResult());
-        }
+		} catch (InvalidResponseException $e) {
+			// Bank returned unknown format of the response but you can get
+			// pure response by calling $e->getResult() and manually check what went wrong
+			Debugger::log($e->getResult());
+		}
 
-        // If response is in known format, check response from bank
-        if ($response->isOk()) {
-            // Great do whatever you want
-        } else {
-            // $response->getErrorCodeMessage()
-        }
-    }
+		// If response is in known format, check response from bank
+		if ($response->isOk()) {
+			// Great do whatever you want
+		} else {
+			// $response->getErrorCodeMessage()
+		}
+	}
 
 }
-
 ```
