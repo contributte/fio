@@ -1,7 +1,13 @@
 {
   "name": "contributte/fio",
   "description": "Easy-to-use FIO API integration for Nette Framework",
-  "keywords": ["fio", "login", "php", "api", "nette"],
+  "keywords": [
+    "fio",
+    "login",
+    "php",
+    "api",
+    "nette"
+  ],
   "type": "library",
   "license": "MIT",
   "homepage": "https://github.com/contributte/fio",
