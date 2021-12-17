@@ -11,3 +11,6 @@ parameters:
 
 		# Probably bug, LibXMLError does not use Throwable
 		- '#^Parameter \#3 \$previous of class Contributte\\Fio\\Exceptions\\InvalidResponseException constructor expects Throwable\|null, LibXMLError given\.$#'
+
+		- '#Property Contributte\\Fio\\(.*)::\$(.*) \(float\) in isset\(\) is not nullable\.#'
+		- '#Property Contributte\\Fio\\(.*)::\$(.*) \(string\) in isset\(\) is not nullable\.#'
