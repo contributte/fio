@@ -32,11 +32,10 @@ For details on how to use this package, check out our [documentation](.docs).
 
 ## Versions
 
-| State       | Version | Branch   | PHP      |                 |
-|-------------|---------|----------|----------|-----------------|
-| development | `^0.3`  | `master` | `>= 7.1` |                 |
-| stable      | `^0.2`  | `master` | `>= 7.1` |                 |
-| stable      | `^0.1`  | `master` | `>= 7.1` |(old namespace)  |
+| State       | Version | Branch   | PHP      |
+|-------------|---------|----------|----------|
+| development | `^0.4`  | `master` | `>= 7.1` |
+| stable      | `^0.3`  | `master` | `>= 7.1` |
 
 
 ## Development
