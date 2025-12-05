@@ -87,9 +87,9 @@ class PaymentResponse
 		return (int) $this->getResult()->errorCode;
 	}
 
-	public function getErrorCodeMessage(): string
+	public function getErrorCodeMessage(): ?string
 	{
-		return self::ERR_MSG[$this->getErrorCode()];
+		return self::ERR_MSG[$this->getErrorCode()] ?? null;
 	}
 
 	/**
