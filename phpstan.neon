@@ -5,6 +5,12 @@ includes:
 	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
+	level: 9
+	phpVersion: 80200
+
+	paths:
+		- src
+
 	ignoreErrors:
 		# curl_exec returns result thanks to option CURLOPT_RETURNTRANSFER - wtf is that api?
 		- '#^Method Contributte\\Fio\\Http\\HttpClient\:\:sendRequest\(\) should return string but returns string\|true\.$#'
