@@ -20,8 +20,7 @@ class PaymentService extends Service
 
 	private const URL = 'https://fioapi.fio.cz/v1/rest/import/';
 
-	/** @var TransactionList|null */
-	private $transactionList;
+	private ?TransactionList $transactionList = null;
 
 	public function __construct(Account $account, IHttpClient $httpClient)
 	{

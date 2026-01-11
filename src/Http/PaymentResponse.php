@@ -26,11 +26,9 @@ class PaymentResponse
 		14 => 'empty file - no transactions in file',
 	];
 
-	/** @var SimpleXMLElement */
-	private $xml;
+	private SimpleXMLElement $xml;
 
-	/** @var string */
-	private $pureResult;
+	private string $pureResult;
 
 	/**
 	 * @throws InvalidResponseException when unexpected XML structure

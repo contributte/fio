@@ -12,7 +12,7 @@ class Config
 {
 
 	/** @var Account[] */
-	private $accounts;
+	private array $accounts;
 
 	public function addAccount(string $name, Account $account): void
 	{

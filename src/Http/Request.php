@@ -11,17 +11,13 @@ class Request
 	public const POST = 'POST';
 	public const GET = 'GET';
 
-	/** @var string */
-	private $token;
+	private string $token;
 
-	/** @var string */
-	private $fileContents;
+	private string $fileContents;
 
-	/** @var string */
-	private $url;
+	private string $url;
 
-	/** @var string */
-	private $requestType;
+	private string $requestType;
 
 	public function __construct(string $url, string $token, string $requestType = self::GET)
 	{

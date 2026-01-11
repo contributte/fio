@@ -12,11 +12,9 @@ use Contributte\Fio\Http\Request;
 abstract class Service
 {
 
-	/** @var IHttpClient */
-	protected $httpClient;
+	protected IHttpClient $httpClient;
 
-	/** @var Account */
-	protected $account;
+	protected Account $account;
 
 	public function __construct(Account $account, IHttpClient $httpClient)
 	{

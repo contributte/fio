@@ -11,11 +11,9 @@ use Contributte\Fio\Services\PaymentService;
 class FioManager
 {
 
-	/** @var Config */
-	private $config;
+	private Config $config;
 
-	/** @var IHttpClient */
-	private $httpClient;
+	private IHttpClient $httpClient;
 
 	public function __construct(Config $config, IHttpClient $httpClient)
 	{

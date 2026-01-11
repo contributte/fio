@@ -13,7 +13,7 @@ class TransactionList implements IteratorAggregate
 {
 
 	/** @var Transaction[] */
-	protected $transactions = [];
+	protected array $transactions = [];
 
 	public function addTransaction(Transaction $transaction): void
 	{

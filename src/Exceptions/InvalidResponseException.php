@@ -10,8 +10,7 @@ use Throwable;
 class InvalidResponseException extends RuntimeException
 {
 
-	/** @var string|null */
-	protected $result;
+	protected ?string $result = null;
 
 	public function __construct(string $message = '', int $code = 0, ?Throwable $previous = null, ?string $result = null)
 	{
