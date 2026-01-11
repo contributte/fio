@@ -1,12 +1,16 @@
 <?php declare(strict_types = 1);
 
+namespace Tests\Cases\Entity\Transaction;
+
 use Contributte\Fio\Entity\Transaction\DomesticTransaction;
+use Contributte\Tester\Toolkit;
+use DateTimeImmutable;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
 // Missing account from
-test(function (): void {
+Toolkit::test(function (): void {
 	$t = new DomesticTransaction();
 	$t->setAmount(222.22);
 	$t->setAccountTo('222444666');
@@ -17,7 +21,7 @@ test(function (): void {
 });
 
 // Missing amount
-test(function (): void {
+Toolkit::test(function (): void {
 	$t = new DomesticTransaction();
 	$t->setAccountFrom('111222333444');
 	$t->setAccountTo('222444666');
@@ -28,7 +32,7 @@ test(function (): void {
 });
 
 // Missing account to
-test(function (): void {
+Toolkit::test(function (): void {
 	$t = new DomesticTransaction();
 	$t->setAccountFrom('111222333444');
 	$t->setAmount(222.22);
@@ -39,7 +43,7 @@ test(function (): void {
 });
 
 // Missing bank code
-test(function (): void {
+Toolkit::test(function (): void {
 	$t = new DomesticTransaction();
 	$t->setAccountFrom('111222333444');
 	$t->setAmount(222.22);
@@ -50,7 +54,7 @@ test(function (): void {
 });
 
 // Missing date
-test(function (): void {
+Toolkit::test(function (): void {
 	$t = new DomesticTransaction();
 	$t->setAccountFrom('111222333444');
 	$t->setAmount(222.22);
@@ -61,7 +65,7 @@ test(function (): void {
 });
 
 // Valid
-test(function (): void {
+Toolkit::test(function (): void {
 	$t = new DomesticTransaction();
 	$t->setAccountFrom('111222333444');
 	$t->setAmount(222.22);
