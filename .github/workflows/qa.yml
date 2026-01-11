@@ -1,4 +1,4 @@
-name: "Codesniffer"
+name: "QA"
 
 on:
   pull_request:
@@ -11,6 +11,12 @@ on:
     - cron: "0 8 * * 1"
 
 jobs:
+  phpstan:
+    name: "PHPStan"
+    uses: contributte/.github/.github/workflows/phpstan.yml@master
+    with:
+      php: "8.2"
+
   codesniffer:
     name: "Codesniffer"
     uses: contributte/.github/.github/workflows/codesniffer.yml@master
