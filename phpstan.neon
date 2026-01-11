@@ -1,10 +1,19 @@
 includes:
-	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
-	- vendor/phpstan/phpstan-nette/extension.neon
-	- vendor/phpstan/phpstan-nette/rules.neon
-	- vendor/phpstan/phpstan-strict-rules/rules.neon
+	- vendor/contributte/phpstan/phpstan.neon
 
 parameters:
+	level: 9
+	phpVersion: 80200
+
+	scanDirectories:
+		- src
+
+	fileExtensions:
+		- php
+
+	paths:
+		- src
+
 	ignoreErrors:
 		# curl_exec returns result thanks to option CURLOPT_RETURNTRANSFER - wtf is that api?
 		- '#^Method Contributte\\Fio\\Http\\HttpClient\:\:sendRequest\(\) should return string but returns string\|true\.$#'
@@ -12,5 +21,23 @@ parameters:
 		# Probably bug, LibXMLError does not use Throwable
 		- '#^Parameter \#3 \$previous of class Contributte\\Fio\\Exceptions\\InvalidResponseException constructor expects Throwable\|null, LibXMLError given\.$#'
 
-		- '#Property Contributte\\Fio\\(.*)::\$(.*) \(float\) in isset\(\) is not nullable\.#'
-		- '#Property Contributte\\Fio\\(.*)::\$(.*) \(string\) in isset\(\) is not nullable\.#'
+		# HttpClient curl_setopt type issues
+		- '#^Parameter \#3 \$value of function curl_setopt expects non-empty-string, string given\.$#'
+		- '#^Parameter \#3 \$value of function curl_setopt expects non-empty-string\|null, string given\.$#'
+		- '#^Parameter \#3 \$value of function curl_setopt expects bool, int given\.$#'
+		- '#^Offset .uri. might not exist on array\{#'
+		- '#^Parameter \#1 \$message of class Contributte\\Fio\\Exceptions\\IOException constructor expects string, string\|null given\.$#'
+
+		# SimpleXMLElement property access
+		- '#^Access to an undefined property iterable<SimpleXMLElement>&Traversable::\$#'
+
+		# ExportXmlGenerator mixed type issues
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			path: src/Utils/ExportXmlGenerator.php
+		-
+			message: '#^Parameter \#1 \$qualifiedName of method SimpleXMLElement::addChild\(\) expects string, mixed given\.$#'
+			path: src/Utils/ExportXmlGenerator.php
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			path: src/Utils/ExportXmlGenerator.php

@@ -10,11 +10,9 @@ use Contributte\Fio\Exceptions\InvalidPropertyException;
 class Account
 {
 
-	/** @var string */
-	private $token;
+	private string $token;
 
-	/** @var string */
-	private $accountNum;
+	private string $accountNum;
 
 	public function __construct(string $token, string $accountNum)
 	{

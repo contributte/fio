@@ -14,36 +14,31 @@ final class DomesticTransaction extends Transaction
 
 	// Standardní
 	public const PAYMENT_TYPE_STANDARD = 431001;
+
 	// Zrychlená
 	public const PAYMENT_TYPE_FASTER = 431004;
+
 	// Prioritní
 	public const PAYMENT_TYPE_PRIORITY = 431005;
+
 	// Příkaz k inkasu
 	public const PAYMENT_TYPE_COLLECTION = 431022;
 
-	/** @var int */
-	private $paymentType;
+	private int $paymentType;
 
-	/** @var string */
-	private $bankCode;
+	private string $bankCode;
 
-	/** @var string */
-	private $ks;
+	private string $ks;
 
-	/** @var string */
-	private $vs;
+	private string $vs;
 
-	/** @var string */
-	private $ss;
+	private string $ss;
 
-	/** @var string */
-	private $messageForRecipient;
+	private string $messageForRecipient;
 
-	/** @var string */
-	private $comment;
+	private string $comment;
 
-	/** @var int */
-	private $paymentReason;
+	private int $paymentReason;
 
 	public function setPaymentType(int $paymentType): void
 	{

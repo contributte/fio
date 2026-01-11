@@ -17,20 +17,20 @@ abstract class Transaction
 	public const CZK = 'CZK';
 	public const EURO = 'EUR';
 
-	/** @var string */
-	protected $accountFrom;
+	protected string $accountFrom;
 
-	/** @var string */
-	protected $currency = self::CZK;
+	protected string $currency = self::CZK;
 
-	/** @var float */
-	protected $amount;
+	protected float $amount;
 
-	/** @var string */
-	protected $accountTo;
+	protected string $accountTo;
 
-	/** @var string */
-	protected $date;
+	protected string $date;
+
+	/**
+	 * Checks if all mandatory data are set
+	 */
+	abstract public function isValid(): bool;
 
 	public function setAccountFrom(string $accountFrom): void
 	{
@@ -85,10 +85,5 @@ abstract class Transaction
 			'accountTo' => $this->accountTo,
 		];
 	}
-
-	/**
-	 * Checks if all mandatory data are set
-	 */
-	abstract public function isValid(): bool;
 
 }
