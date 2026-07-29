@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AccountStatement>
+	<Info>
+		<accountId>2400222222</accountId>
+		<bankId>2010</bankId>
+		<currency>CZK</currency>
+		<iban>CZ7920100000002400222222</iban>
+		<bic>FIOBCZPPXXX</bic>
+		<openingBalance>195.00</openingBalance>
+		<closingBalance>195.01</closingBalance>
+		<dateStart>2012-06-26+02:00</dateStart>
+		<dateEnd>2012-06-30+02:00</dateEnd>
+		<idFrom>1148734530</idFrom>
+		<idTo>1149190193</idTo>
+		<idLastDownload>1149190192</idLastDownload>
+	</Info>
+	<TransactionList>
+		<Transaction>
+			<column_22 id="22" name="ID pohybu">1148734530</column_22>
+			<column_0 id="0" name="Datum">2012-06-26+02:00</column_0>
+			<column_1 id="1" name="Objem">1.00</column_1>
+			<column_14 id="14" name="Měna">CZK</column_14>
+			<column_2 id="2" name="Protiúčet">2900233333</column_2>
+			<column_10 id="10" name="Název protiúčtu">Pavel, Novák</column_10>
+			<column_3 id="3" name="Kód banky">2010</column_3>
+			<column_12 id="12" name="Název banky">Fio banka, a.s.</column_12>
+			<column_4 id="4" name="KS">0558</column_4>
+			<column_5 id="5" name="VS">1234567890</column_5>
+			<column_8 id="8" name="Typ">Příjem převodem uvnitř banky</column_8>
+			<column_17 id="17" name="ID pokynu">2105685816</column_17>
+		</Transaction>
+		<Transaction>
+			<column_22 id="22" name="ID pohybu">1149190193</column_22>
+			<column_0 id="0" name="Datum">2012-06-30+02:00</column_0>
+			<column_1 id="1" name="Objem">0.01</column_1>
+			<column_14 id="14" name="Měna">CZK</column_14>
+			<column_8 id="8" name="Typ">Připsaný úrok</column_8>
+			<column_17 id="17" name="ID pokynu">2107642322</column_17>
+		</Transaction>
+	</TransactionList>
+</AccountStatement>

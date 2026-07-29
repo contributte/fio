@@ -8,7 +8,7 @@
 
 ## Requirements
 
-You need your bank account and token generated in your e-banking. There is no special token for testing. So you will have to use the same token for both testing and production. It is recommended to generate two tokens per account. One for sending payments to bank and the other one for downloading payments from bank (We only included sending payments feature yet.).
+You need your bank account and token generated in your e-banking. There is no special token for testing. So you will have to use the same token for both testing and production. It is recommended to generate two tokens per account. One for sending payments to bank and the other one for downloading payments from bank.
 
 * **accountNumber**
 * **accountToken**
@@ -31,7 +31,7 @@ fio:
 
 ## Usage
 
-As this package is under development we haven't included downloading payments from bank yet. You can use our package for simply sending payments to bank. You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package supports domestic transactions (`DomesticTransaction`), euro payments (`EuroTransaction`) and foreign payments (`ForeignTransaction`).
+You can use our package for sending payments to bank and for downloading account movements (statements). You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package supports domestic transactions (`DomesticTransaction`), euro payments (`EuroTransaction`) and foreign payments (`ForeignTransaction`).
 
 `DomesticTransaction` mandatory properties:
 
@@ -135,3 +135,38 @@ final class SendPaymentsControl extends BaseControl
 
 }
 ```
+
+### Downloading movements
+
+From `FioManager` you get `AccountService` which downloads account movements in Fio XML format and parses them into `AccountStatement` (account info + list of `Movement` objects):
+
+* `movementsForPeriod(DateTimeInterface $from, DateTimeInterface $to)` - movements for given period
+* `movementsFromLastRequest()` - movements since the last download (bank moves the cursor automatically)
+* `movementsForStatement(int $year, int $id)` - official statement by year and number
+* `setLastId(int $id)` - sets the cursor to the ID of the last successfully downloaded movement
+* `setLastDate(DateTimeInterface $date)` - sets the cursor to a date
+
+```php
+<?php
+
+$accountService = $fioManager->createAccountService('czk-read');
+
+$statement = $accountService->movementsForPeriod(
+	new DateTimeImmutable('2023-08-01'),
+	new DateTimeImmutable('2023-08-31')
+);
+
+echo $statement->getOpeningBalance();
+echo $statement->getClosingBalance();
+
+foreach ($statement as $movement) {
+	echo $movement->getId();
+	echo $movement->getDate()->format('Y-m-d');
+	echo $movement->getAmount();
+	echo $movement->getCurrency();
+	echo $movement->getType();
+	echo $movement->getVs();
+}
+```
+
+Data older than 90 days require temporarily unlocking full history in your e-banking (Settings → API).

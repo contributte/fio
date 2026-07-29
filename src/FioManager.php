@@ -3,6 +3,7 @@
 namespace Contributte\Fio;
 
 use Contributte\Fio\Http\IHttpClient;
+use Contributte\Fio\Services\AccountService;
 use Contributte\Fio\Services\PaymentService;
 
 /**
@@ -27,6 +28,14 @@ class FioManager
 		$account = $this->config->getAccountByName($accountName);
 
 		return new PaymentService($account, $this->httpClient);
+	}
+
+	public function createAccountService(string $accountName): AccountService
+	{
+		// We get account by name
+		$account = $this->config->getAccountByName($accountName);
+
+		return new AccountService($account, $this->httpClient);
 	}
 
 }
