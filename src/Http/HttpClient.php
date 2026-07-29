@@ -2,6 +2,7 @@
 
 namespace Contributte\Fio\Http;
 
+use Contributte\Fio\Exceptions\HttpStatusException;
 use Contributte\Fio\Exceptions\IOException;
 use CURLFile;
 
@@ -66,12 +67,20 @@ class HttpClient implements IHttpClient
 			throw new IOException(curl_strerror(curl_errno($ch)));
 		}
 
+		// HTTP status
+		$statusCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+
 		// Close
 		curl_close($ch);
 
 		// Close temp file
 		if (isset($xmlFile)) {
 			fclose($xmlFile);
+		}
+
+		// Error statuses carry no parseable payload, throw with hint from API docs
+		if ($statusCode >= 400) {
+			throw HttpStatusException::fromStatusCode($statusCode, is_string($result) ? $result : null);
 		}
 
 		return $result;
