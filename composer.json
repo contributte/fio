@@ -21,7 +21,10 @@
     }
   ],
   "require": {
-    "php": ">=8.2"
+    "php": ">=8.2",
+    "ext-curl": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*"
   },
   "require-dev": {
     "contributte/qa": "~0.4.0",
