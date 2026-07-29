@@ -134,7 +134,6 @@ final class DomesticTransaction extends Transaction
 	{
 		return isset(
 			$this->accountFrom,
-			$this->currency,
 			$this->amount,
 			$this->accountTo,
 			$this->bankCode,
