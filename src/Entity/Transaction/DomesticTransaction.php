@@ -24,21 +24,21 @@ final class DomesticTransaction extends Transaction
 	// Příkaz k inkasu
 	public const PAYMENT_TYPE_COLLECTION = 431022;
 
-	private int $paymentType;
+	private ?int $paymentType = null;
 
 	private string $bankCode;
 
-	private string $ks;
+	private ?string $ks = null;
 
-	private string $vs;
+	private ?string $vs = null;
 
-	private string $ss;
+	private ?string $ss = null;
 
-	private string $messageForRecipient;
+	private ?string $messageForRecipient = null;
 
-	private string $comment;
+	private ?string $comment = null;
 
-	private int $paymentReason;
+	private ?int $paymentReason = null;
 
 	public function setPaymentType(int $paymentType): void
 	{
