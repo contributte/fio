@@ -31,16 +31,42 @@ fio:
 
 ## Usage
 
-As this package is under development we haven't included downloading payments from bank yet. You can use our package for simply sending domestic payments to bank. You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package only supports domestic transactions but it is very easy to implement other types of payments. You only need to extend `Contributte\Fio\Entity\Transaction\Transaction` class and use it same way as Domestic Transaction class which has these mandatory properties:
+As this package is under development we haven't included downloading payments from bank yet. You can use our package for simply sending payments to bank. You can send multiple payments at once but you can query bank api only once in 30 seconds (if you ping servers in shorter intervals it will return error). This package supports domestic transactions (`DomesticTransaction`), euro payments (`EuroTransaction`) and foreign payments (`ForeignTransaction`).
 
-* Sender account (automatically supplier from config)
-* Currency
+`DomesticTransaction` mandatory properties:
+
+* Sender account (automatically supplied from config)
+* Currency (default CZK)
 * Amount
 * Recipient account
 * Bank code
 * Date
 
-For more properties check the class itself.
+`EuroTransaction` mandatory properties:
+
+* Sender account (automatically supplied from config)
+* Currency (default EUR)
+* Amount
+* Recipient account (IBAN)
+* Date
+* Beneficiary name (`setBenefName()`)
+
+`ForeignTransaction` mandatory properties:
+
+* Sender account (automatically supplied from config)
+* Currency (account currency, default CZK)
+* Amount
+* Recipient account (account number or IBAN)
+* BIC
+* Date
+* Beneficiary name, street, city and country
+* Remittance info 1 (`setRemittanceInfo1()`)
+* Details of charges (`setDetailsOfCharges()`, `CHARGES_OUR`/`CHARGES_BEN`/`CHARGES_SHA`)
+* Payment reason (`setPaymentReason()`, see FIO API docs chapter 6.3.4)
+
+When mixing transaction types in one batch, the bank requires this order: domestic payments, euro payments, foreign payments.
+
+For more properties check the classes themselves.
 
 From `FioManager` you get `PaymentService` which has two methods:
 
