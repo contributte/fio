@@ -2,8 +2,6 @@
 
 namespace Contributte\Fio\Entity\Transaction;
 
-use Contributte\Fio\Exceptions\InvalidPropertyException;
-
 /**
  * DomesticTransaction
  */
@@ -24,8 +22,6 @@ final class DomesticTransaction extends Transaction
 	// Příkaz k inkasu
 	public const PAYMENT_TYPE_COLLECTION = 431022;
 
-	private ?int $paymentType = null;
-
 	private string $bankCode;
 
 	private ?string $ks = null;
@@ -38,78 +34,46 @@ final class DomesticTransaction extends Transaction
 
 	private ?string $comment = null;
 
-	private ?int $paymentReason = null;
-
-	public function setPaymentType(int $paymentType): void
-	{
-		if (strlen((string) $paymentType) !== 6) {
-			throw new InvalidPropertyException('$paymentType has to be 6 digits long.');
-		}
-
-		$this->paymentType = $paymentType;
-	}
-
 	public function setBankCode(string $bankCode): void
 	{
-		if (strlen($bankCode) !== 4) {
-			throw new InvalidPropertyException('$bankCode must be 4 digits long.');
-		}
+		$this->assertExactLength($bankCode, 4, 'bankCode');
 
 		$this->bankCode = $bankCode;
 	}
 
 	public function setKs(string $ks): void
 	{
-		if (strlen($ks) > 4) {
-			throw new InvalidPropertyException('$ks can be maximum of 4 digits long.');
-		}
+		$this->assertMaxLength($ks, 4, 'ks');
 
 		$this->ks = $ks;
 	}
 
 	public function setVs(string $vs): void
 	{
-		if (strlen($vs) > 10) {
-			throw new InvalidPropertyException('$vs can be maximum of 10 digits long.');
-		}
+		$this->assertMaxLength($vs, 10, 'vs');
 
 		$this->vs = $vs;
 	}
 
 	public function setSs(string $ss): void
 	{
-		if (strlen($ss) > 10) {
-			throw new InvalidPropertyException('$ss can be maximum of 10 digits long.');
-		}
+		$this->assertMaxLength($ss, 10, 'ss');
 
 		$this->ss = $ss;
 	}
 
 	public function setMessageForRecipient(string $messageForRecipient): void
 	{
-		if (strlen($messageForRecipient) > 140) {
-			throw new InvalidPropertyException('$messageForRecipient can be maximum of 140 characters long.');
-		}
+		$this->assertMaxLength($messageForRecipient, 140, 'messageForRecipient');
 
 		$this->messageForRecipient = $messageForRecipient;
 	}
 
 	public function setComment(string $comment): void
 	{
-		if (strlen($comment) > 255) {
-			throw new InvalidPropertyException('$comment can be maximum of 255 characters long.');
-		}
+		$this->assertMaxLength($comment, 255, 'comment');
 
 		$this->comment = $comment;
-	}
-
-	public function setPaymentReason(int $paymentReason): void
-	{
-		if (strlen((string) $paymentReason) !== 3) {
-			throw new InvalidPropertyException('$paymentReason must be 3 digits long.');
-		}
-
-		$this->paymentReason = $paymentReason;
 	}
 
 	/**
