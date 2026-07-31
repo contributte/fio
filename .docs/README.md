@@ -64,7 +64,7 @@ As this package is under development we haven't included downloading payments fr
 * Details of charges (`setDetailsOfCharges()`, `CHARGES_OUR`/`CHARGES_BEN`/`CHARGES_SHA`)
 * Payment reason (`setPaymentReason()`, see FIO API docs chapter 6.3.4)
 
-When mixing transaction types in one batch, the bank requires this order: domestic payments, euro payments, foreign payments.
+The bank requires transaction types in a fixed order within one batch (domestic, euro, foreign payments) — the library sorts the export automatically, you can add payments in any order.
 
 For more properties check the classes themselves.
 

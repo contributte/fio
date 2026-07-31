@@ -12,6 +12,14 @@ use IteratorAggregate;
 class TransactionList implements IteratorAggregate
 {
 
+	// Bank rejects the import file unless types keep this order (FIO API docs 6.3).
+	// Keyed by XML element name so custom Transaction subclasses sort correctly too.
+	private const EXPORT_ORDER = [
+		DomesticTransaction::NAME => 0,
+		EuroTransaction::NAME => 1,
+		ForeignTransaction::NAME => 2,
+	];
+
 	/** @var Transaction[] */
 	protected array $transactions = [];
 
@@ -38,10 +46,16 @@ class TransactionList implements IteratorAggregate
 	 */
 	public function toArray(): array
 	{
+		// Stable sort, insertion order is kept within each type
+		$transactions = $this->transactions;
+		usort(
+			$transactions,
+			static fn (Transaction $a, Transaction $b): int => (self::EXPORT_ORDER[$a::NAME] ?? PHP_INT_MAX) <=> (self::EXPORT_ORDER[$b::NAME] ?? PHP_INT_MAX)
+		);
+
 		$arr = [];
 
-		/** @var Transaction $transaction */
-		foreach ($this->transactions as $transaction) {
+		foreach ($transactions as $transaction) {
 			$arr[] = [$transaction::NAME => $transaction->toArray()];
 		}
 
