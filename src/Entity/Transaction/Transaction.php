@@ -27,6 +27,10 @@ abstract class Transaction
 
 	protected string $date;
 
+	protected ?int $paymentReason = null;
+
+	protected ?int $paymentType = null;
+
 	/**
 	 * Checks if all mandatory data are set
 	 */
@@ -34,18 +38,14 @@ abstract class Transaction
 
 	public function setAccountFrom(string $accountFrom): void
 	{
-		if (strlen($accountFrom) > 16) {
-			throw new InvalidPropertyException('Maximum accountFrom length is 16.');
-		}
+		$this->assertMaxLength($accountFrom, 16, 'accountFrom');
 
 		$this->accountFrom = $accountFrom;
 	}
 
 	public function setCurrency(string $currency): void
 	{
-		if (strlen($currency) !== 3) {
-			throw new InvalidPropertyException('Currency code length must be 3.');
-		}
+		$this->assertExactLength($currency, 3, 'currency');
 
 		$this->currency = $currency;
 	}
@@ -74,6 +74,26 @@ abstract class Transaction
 	}
 
 	/**
+	 * Payment reason code, see FIO API docs chapter 6.3.4
+	 */
+	public function setPaymentReason(int $paymentReason): void
+	{
+		$this->assertExactLength((string) $paymentReason, 3, 'paymentReason');
+
+		$this->paymentReason = $paymentReason;
+	}
+
+	/**
+	 * Allowed values are the PAYMENT_TYPE_* constants of the concrete transaction
+	 */
+	public function setPaymentType(int $paymentType): void
+	{
+		$this->assertExactLength((string) $paymentType, 6, 'paymentType');
+
+		$this->paymentType = $paymentType;
+	}
+
+	/**
 	 * @return mixed[]
 	 */
 	public function toArray(): array
@@ -84,6 +104,36 @@ abstract class Transaction
 			'amount' => $this->amount,
 			'accountTo' => $this->accountTo,
 		];
+	}
+
+	/**
+	 * @throws InvalidPropertyException
+	 */
+	protected function assertMaxLength(string $value, int $maxLength, string $property): void
+	{
+		if (strlen($value) > $maxLength) {
+			throw new InvalidPropertyException(sprintf('$%s can be maximum of %d characters long.', $property, $maxLength));
+		}
+	}
+
+	/**
+	 * @throws InvalidPropertyException
+	 */
+	protected function assertExactLength(string $value, int $length, string $property): void
+	{
+		if (strlen($value) !== $length) {
+			throw new InvalidPropertyException(sprintf('$%s must be exactly %d characters long.', $property, $length));
+		}
+	}
+
+	/**
+	 * @throws InvalidPropertyException
+	 */
+	protected function assertLengthBetween(string $value, int $minLength, int $maxLength, string $property): void
+	{
+		if (strlen($value) < $minLength || strlen($value) > $maxLength) {
+			throw new InvalidPropertyException(sprintf('$%s must be between %d and %d characters long.', $property, $minLength, $maxLength));
+		}
 	}
 
 }
